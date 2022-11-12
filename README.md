@@ -19,25 +19,82 @@ NAND gate is actually a combination of two logic gates i.e. AND gate followed by
 
 F=((C'.B.A)'(D'.C.A)'(C.B'.A)')'
 
-## Logic Diagram
-
-Using NOR gates
+## Using NOR gates
 NOR gate is actually a combination of two logic gates: OR gate followed by NOT gate. So its output is complement of the output of an OR gate. This gate can have minimum two inputs, output is always one. By using only NOR gates, we can realize all logic functions: AND, OR, NOT, Ex-OR, Ex-NOR, NAND. So this gate is also called universal gate. Designing a circuit with NOR gates only uses the same basic techniques as designing a circuit with NAND gates; that is, the application of deMorgan’s theorem. The only difference between NOR gate design and NAND gate design is that the former must eliminate product terms and the later must eliminate sum terms.
 
 F=(((C.B'.A)+(D.C'.A)+(C.B'.A))')'
 
-## Logic Diagram
-## Procedure
 ## Program:
 /*
 Program to implement the given logic function using NAND and NOR gates and to verify its operations in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+
+Developed by: S.LOKESH SAI DILEEP
+
+RegisterNumber: 212221230111 
 */
-## RTL realization
+
+## Using NAND:
+
+module comblogic(a,b,c,d,f);
+
+input a,b,c,d;
+
+output F;
+
+wire f1,f2,f3;
+
+assign f1 = (~c&~b&~a);
+
+assign f2 = (~d&~c&~a);
+
+assign f3 = (c&~(~b)&~a);
+
+assign F= f1&~f2&~f3;
+
+endmodule
+
+## Using NOR Gate:
+
+module comblogic(a,b,c,d,f);
+
+input a,b,c,d;
+
+output F;
+
+wire f1,f2,f3,f4;
+
+assign f1 = c&(~b)&a;
+
+assign f2 = d&(~c)&a;
+
+assign f3 = c&(~b)&a;
+
+assign f4 = ~(f1|f2|f3);
+
+not(F,f4);
+
+endmodule
 
 ## Output:
 ## RTL
-## Timing Diagram
+![image](https://user-images.githubusercontent.com/94883079/201469075-35f41fcd-b7b5-4304-8268-48a8e5dacf18.png)
+
+## Timing Diagram:
+![image](https://user-images.githubusercontent.com/94883079/201469092-9642828e-3cbe-4c0c-968d-2609ccce78bb.png)
+
+## Truth table:
+
+![image](https://user-images.githubusercontent.com/94883079/201469130-6c898a4d-f9af-4508-a11e-76dbb39937ce.png)
+
+## Program 2:
+## RTL:
+![image](https://user-images.githubusercontent.com/94883079/201469186-55f3d37a-10e2-468c-ae98-820894c6ced6.png)
+
+## Timing Diagram:
+![image](https://user-images.githubusercontent.com/94883079/201469200-e6933889-9504-490e-bb03-b96d6a9bbda2.png)
+
+## Truth Table:
+![image](https://user-images.githubusercontent.com/94883079/201469223-7332823a-a25c-4723-acf8-d6311e86a9ed.png)
+
 ## Result:
 Thus the given logic functions are implemented using NAND and NOR gates and their operations are verified using Verilog programming.
